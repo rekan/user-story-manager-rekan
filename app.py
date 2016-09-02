@@ -49,17 +49,6 @@ def create_tables():
     database.create_tables([UserStory])
 
 
-# # given a template and a SelectQuery instance, render a paginated list of
-# # objects from the query inside the template
-# def object_list(template_name, qr, var_name='object_list', **kwargs):
-#     kwargs.update(
-#         page=int(request.args.get('page', 1)),
-#         pages=qr.count() / 20 + 1
-#     )
-#     kwargs[var_name] = qr.paginate(kwargs['page'])
-#     return render_template(template_name, **kwargs)
-
-
 # Request handlers -- these two hooks are provided by flask and we will use them
 # to create and tear down a database connection on each request.
 @app.before_request
@@ -88,7 +77,7 @@ def list_all_user_stories():
 
 
 @app.route('/story/', methods=['GET', 'POST'])
-def add_edit_user_story():
+def add_user_story():
     if (request.method == "POST" and request.form["story_title"] and request.form["user_story"] and
             request.form["acceptance_criteria"] and request.form["business_value"] and request.form["estimation"] and
             request.form["status"]):
@@ -100,16 +89,11 @@ def add_edit_user_story():
     else:
         return render_template('form.html')
 
-# @app.route('/create/', methods=['GET', 'POST'])
-# def create():
-#     if request.method == 'POST' and request.form['content']:
-#         message = Message.create(
-#             content=request.form['content'],
-#             pub_date=datetime.datetime.now())
-#         flash('Your message has been created')
-#         return redirect(url_for('user_detail', username=user.username))
-#
-#     return render_template('create.html')
+
+@app.route('/delete/', methods=['GET'])
+def delete_user_story():
+    UserStory.delete().where(UserStory.id == request.args.get("story_id")).execute()
+    return redirect('/list/')
 
 
 # allow running from the command line

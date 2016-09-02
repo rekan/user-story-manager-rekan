@@ -17,6 +17,8 @@
         <th>Business Value</th>
         <th>Estimation</th>
         <th>Status</th>
+        <th></th>
+        <th></th>
     </tr>
     {% for i in records %}
         <tr>
@@ -27,11 +29,13 @@
             <td>{{i.business_value}}</td>
             <td>{{i.estimation}}</td>
             <td>{{i.status}}</td>
+            <td><a href="../story/"><img src="{{ url_for('static', filename='pencil.ico') }}" width="24" height="27" alt="Edit"></a></td>
+            <td><a href="{{ url_for('delete_user_story', story_id=i.id) }}"><img src="{{ url_for('static', filename='bin.ico') }}" width="24" height="27" alt="Delete"></a></td>
         </tr>
     {% endfor %}
     </table>
 
-    <a href="../story/">New User Story</a>
+    <a href="{{ url_for('add_user_story') }}">New User Story</a>
 </body>
 
 </html>

@@ -10,29 +10,29 @@
 
     <form action="" method="post">
 
-    <p>Story Title:</p>
-    <p><input name="story_title"></p>
+    <p><label>Story Title</label>
+        <input name="story_title"></p>
 
-    <p>User Story:</p>
-    <p><textarea rows="10" cols="20" name="user_story"></textarea></p>
+    <p><label>User Story</label>
+        <textarea rows="10" cols="20" name="user_story"></textarea></p>
 
-    <p>Acceptance Criteria:</p>
-    <p><textarea rows="10" cols="20" name="acceptance_criteria"></textarea></p>
+    <p><label>Acceptance Criteria</label>
+        <textarea rows="10" cols="20" name="acceptance_criteria"></textarea></p>
 
-    <p>Business Value:</p>
-    <p><input type="number" min="100" max="1500" step="100" name="business_value"></p>
+    <p><label>Business Value</label>
+        <input type="number" min="100" max="1500" step="100" name="business_value"></p>
 
-    <p>Estimation:</p>
-    <p><input type="number" min="0.5" max="40" step="0.5" name="estimation"></p>
+    <p><label>Estimation</label>
+        <input type="number" min="0.5" max="40" step="0.5" name="estimation"></p>
 
-    <p>Status</p>
+    <p><label>Status</label>
     <select name="status">
     <option value="Planning">Planning</option>
     <option value="In Progress">In Progress</option>
     <option value="To Do">To Do</option>
     <option value="Review">Review</option>
     <option value="Done">Done</option>
-    </select>
+    </select></p>
 
     <p><input type="submit"></p>
     </form>
