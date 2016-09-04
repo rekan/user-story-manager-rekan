@@ -6,35 +6,35 @@
 </head>
 
 <body>
-    <h1>User Story Manager</h1>
+    <h1>User Story Manager - {{action}}</h1>
 
     <form action="" method="post">
 
-    <p><label>Story Title</label>
-        <input name="story_title"></p>
+    <p><label for="story_title">Story Title</label>
+        <input name="story_title" value="{{story.story_title}}"></p>
 
-    <p><label>User Story</label>
-        <textarea rows="10" cols="20" name="user_story"></textarea></p>
+    <p><label for="user_story">User Story</label>
+        <textarea rows="10" cols="20" name="user_story">{{story.user_story}}</textarea></p>
 
-    <p><label>Acceptance Criteria</label>
-        <textarea rows="10" cols="20" name="acceptance_criteria"></textarea></p>
+    <p><label for="acceptance_criteria">Acceptance Criteria</label>
+        <textarea rows="10" cols="20" name="acceptance_criteria">{{story.acceptance_criteria}}</textarea></p>
 
-    <p><label>Business Value</label>
-        <input type="number" min="100" max="1500" step="100" name="business_value"></p>
+    <p><label for="business_value">Business Value</label>
+        <input type="number" min="100" max="1500" step="100" name="business_value" value="{{story.business_value}}"></p>
 
-    <p><label>Estimation</label>
-        <input type="number" min="0.5" max="40" step="0.5" name="estimation"></p>
+    <p><label for="estimation">Estimation</label>
+        <input type="number" min="0.5" max="40" step="0.5" name="estimation" value="{{story.estimation}}"></p>
 
-    <p><label>Status</label>
+    <p><label for="status">Status</label>
     <select name="status">
-    <option value="Planning">Planning</option>
-    <option value="In Progress">In Progress</option>
-    <option value="To Do">To Do</option>
-    <option value="Review">Review</option>
-    <option value="Done">Done</option>
+    <option value="Planning" {{"selected" if story.status == "Planning" else ""}}>Planning</option>
+    <option value="In Progress" {{"selected" if story.status == "In Progress" else ""}}>In Progress</option>
+    <option value="To Do" {{"selected" if story.status == "To Do" else ""}}>To Do</option>
+    <option value="Review" {{"selected" if story.status == "Review" else ""}}>Review</option>
+    <option value="Done" {{"selected" if story.status == "Done" else ""}}>Done</option>
     </select></p>
 
-    <p><input type="submit"></p>
+    <p><input type="submit" value={{action}}></p>
     </form>
 </body>
 </html>

@@ -86,13 +86,26 @@ def add_user_story():
                          business_value=request.form["business_value"], estimation=request.form["estimation"],
                          status=request.form["status"])
         return redirect('/list/')
-    else:
-        return render_template('form.html')
+    return render_template('form.html', story="", action="Create")
 
 
-@app.route('/delete/', methods=['GET'])
-def delete_user_story():
-    UserStory.delete().where(UserStory.id == request.args.get("story_id")).execute()
+@app.route('/story/<story_id>', methods=['GET', 'POST'])
+def update_user_story(story_id):
+    current_story = UserStory.get(UserStory.id == story_id)
+    if (request.method == "POST" and request.form["story_title"] and request.form["user_story"] and
+            request.form["acceptance_criteria"] and request.form["business_value"] and request.form["estimation"] and
+            request.form["status"]):
+        UserStory.update(story_title=request.form["story_title"], user_story=request.form["user_story"],
+                         acceptance_criteria=request.form["acceptance_criteria"],
+                         business_value=request.form["business_value"], estimation=request.form["estimation"],
+                         status=request.form["status"]).where(UserStory.id == story_id).execute()
+        return redirect('/list/')
+    return render_template('form.html', story=current_story, action="Update")
+
+
+@app.route('/delete/<story_id>', methods=['GET'])
+def delete_user_story(story_id):
+    UserStory.delete().where(UserStory.id == story_id).execute()
     return redirect('/list/')
 
 
