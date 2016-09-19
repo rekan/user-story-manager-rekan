@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>User Story Manager</title>
+    <link rel="stylesheet" href="https://bootswatch.com/spacelab/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="{{ url_for('homepage')}}">HOME</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ url_for('add_user_story') }}">Add New User Story</a></li>
+                    <li><a href="{{ url_for('list_all_user_stories')}}"> List User Stories</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        {% block body %}{% endblock %}
+    </div>
+
+</body>
+</html>

@@ -1,14 +1,9 @@
-<!DOCTYPE html>
+{% extends "index.html" %}
+{% block body %}
 
-<html>
-<head>
-    <title>User Story Manager</title>
-</head>
-
-<body>
     <h1>User Story Manager</h1>
 
-    <table>
+    <table class="table">
     <tr>
         <th>Story ID</th>
         <th>Story Title</th>
@@ -17,8 +12,7 @@
         <th>Business Value</th>
         <th>Estimation</th>
         <th>Status</th>
-        <th></th>
-        <th></th>
+        <th colspan="2"></th>
     </tr>
     {% for i in records %}
         <tr>
@@ -29,13 +23,10 @@
             <td>{{i.business_value}}</td>
             <td>{{i.estimation}}</td>
             <td>{{i.status}}</td>
-            <td><a href="{{ url_for('update_user_story', story_id=i.id) }}"><img src="{{ url_for('static', filename='pencil.ico') }}" width="24" height="27" alt="Edit"></a></td>
-            <td><a href="{{ url_for('delete_user_story', story_id=i.id) }}"><img src="{{ url_for('static', filename='bin.ico') }}" width="24" height="27" alt="Delete"></a></td>
+            <td><a href="{{ url_for('update_user_story', story_id=i.id) }}" data-toggle="tooltip" title="Edit"><img src="{{ url_for('static', filename='pencil.png') }}" width="24" height="27" alt="Edit"></a></td>
+            <td><a href="{{ url_for('delete_user_story', story_id=i.id) }}" data-toggle="tooltip" title="Delete"><img src="{{ url_for('static', filename='bin.png') }}" width="24" height="27" alt="Delete"></a></td>
         </tr>
     {% endfor %}
     </table>
 
-    <a href="{{ url_for('add_user_story') }}">New User Story</a>
-</body>
-
-</html>
+{% endblock %}
